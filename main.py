@@ -33,7 +33,7 @@ class Suma(MDScreen):
             else:
                 self.ids.resultado.text = "Respuesta incorrecta, vuelve a intentar"
         except:
-            self.ids.resultado.text = "Hubo un error en el proceso"
+            self.ids.resultado.text = "Hubo un error en el proceso" #En caso de que se ingrese un valor no permitido
 
 class Resta(MDScreen):
     def generar_numero(self):
@@ -53,7 +53,7 @@ class Resta(MDScreen):
             else:
                 self.ids.resultado.text = "Respuesta incorrecta, vuelve a intentar"
         except:
-            self.ids.resultado.text = "Hubo un error en el proceso"
+            self.ids.resultado.text = "Hubo un error en el proceso" #En caso de que se ingrese un valor no permitido
 
 class Multiplicacion(MDScreen):
     def generar_numero(self):
@@ -72,7 +72,7 @@ class Multiplicacion(MDScreen):
             else:
                 self.ids.resultado.text = f"Respuesta incorrecta"
         except:
-            self.ids.resultado.text = "Error al realizar el calculo"
+            self.ids.resultado.text = "Error al realizar el calculo" #En caso de que se ingrese un valor no permitido
    
 class Division(MDScreen):
     def generar_numero(self):
@@ -84,8 +84,8 @@ class Division(MDScreen):
         
         self.ids.num1.text = f"{self.dividendo}"
         self.ids.num2.text = f"{self.divisor}"
-        self.ids.respuesta.text = "" #para limpiar
-        self.ids.resultado.text = "" #para limpiar
+        self.ids.respuesta.text = "" #para limpiar la respuesta anterior
+        self.ids.resultado.text = "" #para limpiar el resultado anterior
         
     def calcular(self):
         try:
