@@ -1,0 +1,463 @@
+GestorPantalla:
+    MenuPrincipal:
+    Ejercicios:
+    Suma:
+    Resta:
+    Multiplicacion:
+    Division:
+    Ecuaciones:
+    EcuacionBasica:
+
+<MenuPrincipal>:
+    name: "menu"
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "20dp"
+
+        MDToolbar:
+            title: "Sigma - Matemáticas"
+            elevation: 10
+            pos_hint: {"top": 1}
+        
+        MDLabel:
+            text: "¡Bienvenido! Elige una opción para comenzar"
+            halign: "center"
+            font_style: "Subtitle1"
+            theme_text_color: "Secondary"
+
+        MDRaisedButton:
+            text: "Operaciones Basicas"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            on_release: root.manager.current = "Ejercicios"
+
+        MDRaisedButton:
+            text: "Ecuaciones"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            on_release: root.manager.current = "Ecuaciones"
+
+        MDRaisedButton:
+            text: "Salir"
+            pos_hint: {"center_x": 0.5}
+            size_hint: 0.4, None
+            height: "48dp"
+            md_bg_color: [1, 0.3, 0.3, 1]
+            on_release: app.stop()
+
+<Ecuaciones>:
+    name: "Ecuaciones"
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "20dp"
+
+        MDToolbar:
+            title: "Ecuaciones"
+            elevation: 10
+            pos_hint: {"top": 1}
+
+        MDLabel:
+            text: "Elija el tipo de Ecuacion"
+            halign: "center"
+            font_style: "H6"
+        
+        MDRaisedButton:
+            text: "Ecuacion de primer grado"
+            icon: "plus"
+            font_size: "18sp"
+            pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            on_release: root.manager.current = "EcuacionBasica"
+            
+        MDFlatButton:
+            text: "Volver"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.manager.current = "menu"
+
+<Ejercicios>:
+    name: "Ejercicios"
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "20dp"
+
+        MDToolbar:
+            title: "Ejercicios"
+            elevation: 10
+            pos_hint: {"top": 1}
+
+        MDLabel:
+            text: "Elija su operacion"
+            halign: "center"
+            font_style: "H6"
+
+        MDRaisedButton:
+            text: "Suma"
+            icon: "plus"
+            font_size: "18sp"
+            pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            on_release: root.manager.current = "suma"
+        
+        MDRaisedButton:
+            text: "Resta"
+            font_size: "18sp"
+            pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            on_release: root.manager.current = "Resta"
+
+        MDRaisedButton:
+            text: "Multiplicación"
+            font_size: "18sp"
+            pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            on_release: root.manager.current = "Multiplicacion"
+        
+        MDRaisedButton:
+            text: "Division"
+            font_size: "18sp"
+            pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            on_release: root.manager.current = "Division"
+
+        MDFlatButton:
+            text: "Volver"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.manager.current = "menu"
+
+<Suma>:
+    name: "suma"
+    on_enter: root.generar_numero()
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "30dp"
+
+        MDLabel:
+            text: "Ejercicio de Suma"
+            halign: "center"
+            font_style: "H6"
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                id: num1
+                text: ""
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0.2, 0.6, 0.9, 1  # Azul claro
+
+            MDLabel:
+                text: "+"
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+
+            MDLabel:
+                id: num2
+                text: ""
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0.2, 0.6, 0.9, 1
+
+        MDTextField:
+            id: respuesta
+            hint_text: "Escribe tu respuesta"
+            input_filter: "float"
+            mode: "rectangle"
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.5}
+
+        MDRaisedButton:
+            text: "Verificar respuesta"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.calcular()
+
+        MDLabel:
+            id: resultado
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+
+        MDFlatButton:
+            text: "Volver"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.manager.current = "Ejercicios"
+
+<Resta>:
+    name: "Resta"
+    on_enter: root.generar_numero()
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "30dp"
+
+        MDLabel:
+            text: "Ejercicio de Resta"
+            halign: "center"
+            font_style: "H6"
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                id: num1
+                text: ""
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0.2, 0.6, 0.9, 1  # Azul claro
+
+            MDLabel:
+                text: "-"
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+
+            MDLabel:
+                id: num2
+                text: ""
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0.2, 0.6, 0.9, 1
+
+        MDTextField:
+            id: respuesta
+            hint_text: "Escribe tu respuesta"
+            input_filter: "float"
+            mode: "rectangle"
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.5}
+
+        MDRaisedButton:
+            text: "Verificar respuesta"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.calcular()
+
+        MDLabel:
+            id: resultado
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+
+        MDFlatButton:
+            text: "Salir"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.manager.current = "Ejercicios"
+
+<Multiplicacion>:
+    name: "Multiplicacion"
+    on_enter: root.generar_numero()
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "20dp"
+
+        MDLabel:
+            text: "Ejercicio de Multiplicación"
+            halign: "center"
+            font_style: "H6"
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                id: num1
+                text: ""
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0.2, 0.6, 0.9, 1
+
+            MDLabel:
+                text: "×"
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+
+            MDLabel:
+                id: num2
+                text: ""
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0.2, 0.6, 0.9, 1
+
+        MDTextField:
+            id: respuesta
+            hint_text: "Escribe tu respuesta"
+            input_filter: "float"
+            mode: "rectangle"
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.5}
+
+        MDRaisedButton:
+            text: "Verificar respuesta"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.calcular()
+
+        MDLabel:
+            id: resultado
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+
+        MDFlatButton:
+            text: "Salir"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.manager.current = "Ejercicios"
+
+<Division>:
+    name: "Division"
+    on_enter: root.generar_numero()
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "20dp"
+
+        MDLabel:
+            text: "Ejercicio de Division"
+            halign: "center"
+            font_style: "H6"
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                id: num1
+                text: ""
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0.2, 0.6, 0.9, 1
+
+            MDLabel:
+                text: "/"
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+
+            MDLabel:
+                id: num2
+                text: ""
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Custom"
+                text_color: 0.2, 0.6, 0.9, 1
+
+        MDTextField:
+            id: respuesta
+            hint_text: "Escribe tu respuesta"
+            input_filter: "float"
+            mode: "rectangle"
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.5}
+
+        MDRaisedButton:
+            text: "Verificar respuesta"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.calcular()
+
+        MDLabel:
+            id: resultado
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+
+        MDFlatButton:
+            text: "Salir"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.manager.current = "Ejercicios"
+
+<EcuacionBasica>:
+    name: "EcuacionBasica"
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "20dp"
+
+        MDToolbar:
+            title: "Resolver ecuación"
+            elevation: 10
+            pos_hint: {"top": 1}
+
+        MDLabel:
+            id: ecuacion_label
+            text: "Ecuación: "
+            halign: "center"
+            font_style: "H5"
+
+        MDTextField:
+            id: respuesta_input
+            hint_text: "Ingresa el valor de x"
+            mode: "rectangle"
+            input_filter: "int"
+            size_hint_x: 0.6
+            pos_hint: {"center_x": 0.5}
+
+        MDRaisedButton:
+            text: "Verificar"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.verificar_respuesta()
+
+        MDLabel:
+            id: resultado_label
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: [0, 0.6, 0, 1]
+        
+        MDFlatButton:
+            text: "Salir"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.manager.current = "Ecuaciones"
