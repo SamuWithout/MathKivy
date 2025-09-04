@@ -10,21 +10,33 @@ GestorPantalla:
 
 <MenuPrincipal>:
     name: "menu"
+
     MDBoxLayout:
         orientation: "vertical"
         padding: "20dp"
         spacing: "20dp"
 
+        canvas.before:
+            Color:
+                rgba: app.colors['bg']
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
         MDToolbar:
             title: "Sigma - Matemáticas"
             elevation: 10
             pos_hint: {"top": 1}
+            md_bg_color: app.colors['header']
+            text_color: app.colors['text']
+            specific_text_color: app.colors['text']
         
         MDLabel:
-            text: "¡Bienvenido! Elige una opción para comenzar"
+            text: "¡Bienvenido a SIGMA! Elige una opción para comenzar"
+            theme_text_color: "Custom"
+            text_color: app.colors['text']
             halign: "center"
-            font_style: "Subtitle1"
-            theme_text_color: "Secondary"
+            font_style: "H5"
 
         MDRaisedButton:
             text: "Operaciones Basicas"
@@ -32,6 +44,7 @@ GestorPantalla:
             pos_hint: {"center_x": 0.5}
             size_hint: 0.6, None
             height: "48dp"
+            text_color: app.colors['text']
             on_release: root.manager.current = "Ejercicios"
 
         MDRaisedButton:
@@ -40,6 +53,7 @@ GestorPantalla:
             pos_hint: {"center_x": 0.5}
             size_hint: 0.6, None
             height: "48dp"
+            text_color: app.colors['text']
             on_release: root.manager.current = "Ecuaciones"
 
         MDRaisedButton:
@@ -57,29 +71,43 @@ GestorPantalla:
         padding: "20dp"
         spacing: "20dp"
 
+        canvas.before:
+            Color:
+                rgba: app.colors['bg']
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
         MDToolbar:
             title: "Ecuaciones"
             elevation: 10
             pos_hint: {"top": 1}
+            md_bg_color: app.colors['header']
+            text_color: app.colors['text']
+            pos_hint: {"top": 1}
 
         MDLabel:
             text: "Elija el tipo de Ecuacion"
+            theme_text_color: "Custom"
+            text_color: app.colors['text']
             halign: "center"
-            font_style: "H6"
+            font_style: "H5"
         
         MDRaisedButton:
             text: "Ecuacion de primer grado"
-            icon: "plus"
-            font_size: "18sp"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
             size_hint: 0.6, None
             height: "48dp"
+            text_color: app.colors['text']
             on_release: root.manager.current = "EcuacionBasica"
             
-        MDFlatButton:
-            text: "Volver"
-            font_size: "20sp"
+        MDRaisedButton:
+            text: "volver al menu"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.4, None
+            height: "48dp"
+            md_bg_color: [1, 0.3, 0.3, 1]
             on_release: root.manager.current = "menu"
 
 <Ejercicios>:
@@ -89,53 +117,70 @@ GestorPantalla:
         padding: "20dp"
         spacing: "20dp"
 
+        canvas.before:
+            Color:
+                rgba: app.colors['bg']
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
         MDToolbar:
             title: "Ejercicios"
             elevation: 10
             pos_hint: {"top": 1}
+            md_bg_color: app.colors['header']
+            text_color: app.colors['text']
+            specific_text_color: app.colors['text']
 
         MDLabel:
             text: "Elija su operacion"
+            theme_text_color: "Custom"
+            text_color: app.colors['text']
             halign: "center"
-            font_style: "H6"
+            font_style: "H5"
 
         MDRaisedButton:
             text: "Suma"
-            icon: "plus"
-            font_size: "18sp"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
             size_hint: 0.6, None
             height: "48dp"
+            text_color: app.colors['text']
             on_release: root.manager.current = "suma"
         
         MDRaisedButton:
             text: "Resta"
-            font_size: "18sp"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
             size_hint: 0.6, None
             height: "48dp"
+            text_color: app.colors['text']
             on_release: root.manager.current = "Resta"
 
         MDRaisedButton:
             text: "Multiplicación"
-            font_size: "18sp"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
             size_hint: 0.6, None
             height: "48dp"
+            text_color: app.colors['text']
             on_release: root.manager.current = "Multiplicacion"
         
         MDRaisedButton:
             text: "Division"
-            font_size: "18sp"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
             size_hint: 0.6, None
             height: "48dp"
+            text_color: app.colors['text']
             on_release: root.manager.current = "Division"
 
-        MDFlatButton:
-            text: "Volver"
-            font_size: "20sp"
+        MDRaisedButton:
+            text: "Volver al menu principal"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.4, None
+            height: "48dp"
+            md_bg_color: [1, 0.3, 0.3, 1]
             on_release: root.manager.current = "menu"
 
 <Suma>:
@@ -147,10 +192,20 @@ GestorPantalla:
         padding: "20dp"
         spacing: "30dp"
 
-        MDLabel:
-            text: "Ejercicio de Suma"
-            halign: "center"
-            font_style: "H6"
+        canvas.before:
+            Color:
+                rgba: app.colors['bg']
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        MDToolbar:
+            title: "Ejercio - Suma"
+            elevation: 10
+            pos_hint: {"top": 1}
+            md_bg_color: app.colors['header']
+            text_color: app.colors['text']
+            specific_text_color: app.colors['text']
 
         MDBoxLayout:
             orientation: "horizontal"
@@ -165,14 +220,14 @@ GestorPantalla:
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0.2, 0.6, 0.9, 1  # Azul claro
+                text_color: app.colors['text']
 
             MDLabel:
                 text: "+"
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0, 0, 0, 1
+                text_color: app.colors['text']
 
             MDLabel:
                 id: num2
@@ -180,7 +235,7 @@ GestorPantalla:
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0.2, 0.6, 0.9, 1
+                text_color: app.colors['text']
 
         MDTextField:
             id: respuesta
@@ -192,7 +247,11 @@ GestorPantalla:
 
         MDRaisedButton:
             text: "Verificar respuesta"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            text_color: app.colors['text']
             on_release: root.calcular()
 
         MDLabel:
@@ -202,10 +261,12 @@ GestorPantalla:
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
 
-        MDFlatButton:
-            text: "Volver"
-            font_size: "20sp"
+        MDRaisedButton:
+            text: "Volver al menu principal"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.4, None
+            height: "48dp"
+            md_bg_color: [1, 0.3, 0.3, 1]
             on_release: root.manager.current = "Ejercicios"
 
 <Resta>:
@@ -217,10 +278,20 @@ GestorPantalla:
         padding: "20dp"
         spacing: "30dp"
 
-        MDLabel:
-            text: "Ejercicio de Resta"
-            halign: "center"
-            font_style: "H6"
+        canvas.before:
+            Color:
+                rgba: app.colors['bg']
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        MDToolbar:
+            title: "Ejercio - Resta"
+            elevation: 10
+            pos_hint: {"top": 1}
+            md_bg_color: app.colors['header']
+            text_color: app.colors['text']
+            specific_text_color: app.colors['text']
 
         MDBoxLayout:
             orientation: "horizontal"
@@ -235,14 +306,14 @@ GestorPantalla:
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0.2, 0.6, 0.9, 1  # Azul claro
+                text_color: app.colors['text']
 
             MDLabel:
                 text: "-"
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0, 0, 0, 1
+                text_color: app.colors['text']
 
             MDLabel:
                 id: num2
@@ -250,7 +321,7 @@ GestorPantalla:
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0.2, 0.6, 0.9, 1
+                text_color: app.colors['text']
 
         MDTextField:
             id: respuesta
@@ -262,7 +333,11 @@ GestorPantalla:
 
         MDRaisedButton:
             text: "Verificar respuesta"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            text_color: app.colors['text']
             on_release: root.calcular()
 
         MDLabel:
@@ -272,10 +347,12 @@ GestorPantalla:
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
 
-        MDFlatButton:
-            text: "Salir"
-            font_size: "20sp"
+        MDRaisedButton:
+            text: "Volver al menu principal"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.4, None
+            height: "48dp"
+            md_bg_color: [1, 0.3, 0.3, 1]
             on_release: root.manager.current = "Ejercicios"
 
 <Multiplicacion>:
@@ -287,10 +364,20 @@ GestorPantalla:
         padding: "20dp"
         spacing: "20dp"
 
-        MDLabel:
-            text: "Ejercicio de Multiplicación"
-            halign: "center"
-            font_style: "H6"
+        canvas.before:
+            Color:
+                rgba: app.colors['bg']
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        MDToolbar:
+            title: "Ejercio - Multiplicación"
+            elevation: 10
+            pos_hint: {"top": 1}
+            md_bg_color: app.colors['header']
+            text_color: app.colors['text']
+            specific_text_color: app.colors['text']
 
         MDBoxLayout:
             orientation: "horizontal"
@@ -305,14 +392,14 @@ GestorPantalla:
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0.2, 0.6, 0.9, 1
+                text_color: app.colors['text']
 
             MDLabel:
                 text: "×"
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0, 0, 0, 1
+                text_color: app.colors['text']
 
             MDLabel:
                 id: num2
@@ -320,7 +407,7 @@ GestorPantalla:
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0.2, 0.6, 0.9, 1
+                text_color: app.colors['text']
 
         MDTextField:
             id: respuesta
@@ -332,7 +419,11 @@ GestorPantalla:
 
         MDRaisedButton:
             text: "Verificar respuesta"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            text_color: app.colors['text']
             on_release: root.calcular()
 
         MDLabel:
@@ -342,10 +433,12 @@ GestorPantalla:
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
 
-        MDFlatButton:
-            text: "Salir"
-            font_size: "20sp"
+        MDRaisedButton:
+            text: "Volver al menu principal"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.4, None
+            height: "48dp"
+            md_bg_color: [1, 0.3, 0.3, 1]
             on_release: root.manager.current = "Ejercicios"
 
 <Division>:
@@ -357,10 +450,20 @@ GestorPantalla:
         padding: "20dp"
         spacing: "20dp"
 
-        MDLabel:
-            text: "Ejercicio de Division"
-            halign: "center"
-            font_style: "H6"
+        canvas.before:
+            Color:
+                rgba: app.colors['bg']
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        MDToolbar:
+            title: "Ejercio - División"
+            elevation: 10
+            pos_hint: {"top": 1}
+            md_bg_color: app.colors['header']
+            text_color: app.colors['text']
+            specific_text_color: app.colors['text']
 
         MDBoxLayout:
             orientation: "horizontal"
@@ -375,14 +478,14 @@ GestorPantalla:
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0.2, 0.6, 0.9, 1
+                text_color: app.colors['text']
 
             MDLabel:
                 text: "/"
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0, 0, 0, 1
+                text_color: app.colors['text']
 
             MDLabel:
                 id: num2
@@ -390,7 +493,7 @@ GestorPantalla:
                 halign: "center"
                 font_style: "H5"
                 theme_text_color: "Custom"
-                text_color: 0.2, 0.6, 0.9, 1
+                text_color: app.colors['text']
 
         MDTextField:
             id: respuesta
@@ -402,7 +505,11 @@ GestorPantalla:
 
         MDRaisedButton:
             text: "Verificar respuesta"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            text_color: app.colors['text']
             on_release: root.calcular()
 
         MDLabel:
@@ -412,12 +519,14 @@ GestorPantalla:
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
 
-        MDFlatButton:
-            text: "Salir"
-            font_size: "20sp"
+        MDRaisedButton:
+            text: "Volver al menu principal"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.4, None
+            height: "48dp"
+            md_bg_color: [1, 0.3, 0.3, 1]
             on_release: root.manager.current = "Ejercicios"
-
+        
 <EcuacionBasica>:
     name: "EcuacionBasica"
     MDBoxLayout:
@@ -425,16 +534,27 @@ GestorPantalla:
         padding: "20dp"
         spacing: "20dp"
 
+        canvas.before:
+            Color:
+                rgba: app.colors['bg']
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
         MDToolbar:
-            title: "Resolver ecuación"
+            title: "Ejercio - Ecuacion de primer grado"
             elevation: 10
             pos_hint: {"top": 1}
+            md_bg_color: app.colors['header']
+            text_color: app.colors['text']
+            specific_text_color: app.colors['text']
 
         MDLabel:
             id: ecuacion_label
             text: "Ecuación: "
             halign: "center"
-            font_style: "H5"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
 
         MDTextField:
             id: respuesta_input
@@ -446,7 +566,11 @@ GestorPantalla:
 
         MDRaisedButton:
             text: "Verificar"
+            font_size: "20sp"
             pos_hint: {"center_x": 0.5}
+            size_hint: 0.6, None
+            height: "48dp"
+            text_color: app.colors['text']
             on_release: root.verificar_respuesta()
 
         MDLabel:
@@ -454,10 +578,12 @@ GestorPantalla:
             text: ""
             halign: "center"
             theme_text_color: "Custom"
-            text_color: [0, 0.6, 0, 1]
+            text_color: [0, 0, 0, 1]
         
-        MDFlatButton:
-            text: "Salir"
-            font_size: "20sp"
+        MDRaisedButton:
+            text: "Volver al menu principal"
             pos_hint: {"center_x": 0.5}
-            on_release: root.manager.current = "Ecuaciones"
+            size_hint: 0.4, None
+            height: "48dp"
+            md_bg_color: [1, 0.3, 0.3, 1]
+            on_release: root.manager.current = "Ejercicios"
