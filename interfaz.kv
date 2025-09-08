@@ -2,6 +2,7 @@ GestorPantalla:
     MenuPrincipal:
     Ejercicios:
     Ecuaciones:
+    Desafiodificultad:
     Desafio:
     Ecuacionbasicadificultad:
     Ecuacionbasica:
@@ -123,7 +124,7 @@ GestorPantalla:
 
                 MDRaisedButton:
                     text: "Desafio Sigma"
-                    on_release: root.manager.current = "desafio"
+                    on_release: root.manager.current = "desafiodificultad"
                     size_hint: 1, 1
                     md_bg_color: (0, 0, 0, 0) #fondo transparente
                     text_color: app.colors["text"]
@@ -487,6 +488,13 @@ GestorPantalla:
                 width: dp(80)
                 height: dp(40)
                 padding: dp(5)
+            
+            MDProgressBar:
+                id: barra_tiempo
+                value: 100 
+                max: 100
+                height: dp(10)
+                color: app.colors["primary"]
 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a despejar----
@@ -645,8 +653,8 @@ GestorPantalla:
                 halign: "center"
                 valign: "middle"
         
-<Desafio>:
-    name: "desafio"
+<Desafiodificultad>:
+    name: "desafiodificultad"
 
     #fondo general-----------------------------------------
     MDBoxLayout:
@@ -684,13 +692,70 @@ GestorPantalla:
             pos_hint: {"center_x": 0.5}
 
             MDLabel:
-                text: "Bienvenidos al desafio Sigma (explicación)"
+                text: "Bienvenidos al desafio Sigma, Ejercicios de todo tipo se te mostraran en pantalla"
                 halign: "center"
                 font_style: "H4"
                 theme_text_color: "Custom"
                 text_color: app.colors["text"]
                 size_hint_y: None
                 height: self.texture_size[1]
+            
+        #Boton de facil-----------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Facil"
+                    on_release: app.set_dificultad("facil"); root.manager.current = "desafio"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Boton de medio------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Medio"
+                    on_release: app.set_dificultad("medio"); root.manager.current = "desafio"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+        
+        #Boton de dificil-----------------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Dificil"
+                    on_release: app.set_dificultad("dificil"); root.manager.current = "desafio"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
         
         #Bellow----------------------------------------------------------------
         AnchorLayout:
@@ -728,6 +793,122 @@ GestorPantalla:
                 text_color: app.colors["text"]
                 halign: "center"
                 valign: "middle"
+
+<Desafio>:
+    name: "desafio"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Desafio"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+                size_hint_x: None
+                width: dp(200)
+
+            Widget:  # Empuja el contador hacia la derecha
+
+            BoxLayout:
+                id: contador
+                size_hint_x: None
+                width: dp(80)
+                height: dp(40)
+                padding: dp(5)
+            
+            MDProgressBar:
+                id: barra_tiempo
+                value: 100 
+                max: 100
+                height: dp(10)
+                color: app.colors["primary"]
+
+        #Center-------------------------------------------------------------------------------
+        #Contenedor con los numeros a sumar----
+        MDLabel:
+            id: resultado
+
+        MDCard:
+            id: contenedor_numeros
+            radius: [20]
+            size_hint: None, None
+            size: dp(300), dp(80)
+            elevation: 6
+            md_bg_color: app.colors["primary_dark"]
+            padding: dp(10)
+            orientation: "horizontal"
+            pos_hint: {"center_x": 0.5}
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: dp(5)
+                size_hint_y: None
+                height: dp(50)
+                pos_hint: {"center_x": 0.5}
+
+                MDLabel:
+                    id: ejercicio
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+        #contenedores con opciones------
+        MDLabel:
+            id: resultado
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: app.colors["text"]
+            font_size: "18sp"
+            size_hint_y: None
+            height: dp(40)
+
+        MDBoxLayout:
+            id: opciones_respuesta
+            orientation: "vertical"
+            spacing: dp(10)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+        #Bottom--------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 0
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "menu"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
 
 <Ecuaciones>:
     name: "ecuaciones"
@@ -1031,6 +1212,13 @@ GestorPantalla:
                 width: dp(80)
                 height: dp(40)
                 padding: dp(5)
+            
+            MDProgressBar:
+                id: barra_tiempo
+                value: 100 
+                max: 100
+                height: dp(10)
+                color: app.colors["primary"]
 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a sumar----
@@ -1296,6 +1484,13 @@ GestorPantalla:
                 width: dp(80)
                 height: dp(40)
                 padding: dp(5)
+            
+            MDProgressBar:
+                id: barra_tiempo
+                value: 100 
+                max: 100
+                height: dp(10)
+                color: app.colors["primary"]
                 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a restar----
@@ -1561,6 +1756,13 @@ GestorPantalla:
                 width: dp(80)
                 height: dp(40)
                 padding: dp(5)
+            
+            MDProgressBar:
+                id: barra_tiempo
+                value: 100 
+                max: 100
+                height: dp(10)
+                color: app.colors["primary"]
                 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a multiplicar----
@@ -1826,6 +2028,13 @@ GestorPantalla:
                 width: dp(80)
                 height: dp(40)
                 padding: dp(5)
+            
+            MDProgressBar:
+                id: barra_tiempo
+                value: 100 
+                max: 100
+                height: dp(10)
+                color: app.colors["primary"]
                 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a multiplicar----

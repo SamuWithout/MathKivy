@@ -42,24 +42,42 @@ class Divisiondificultad(MDScreen): pass
     
 class Ecuaciones(MDScreen): pass
 
+class Desafiodificultad(MDScreen): pass
+
 class Timer(Label):
-    def __init__(self, duration, on_timeout, **kwargs):
+    def __init__(self, duration, on_timeout, progress_bar=None, **kwargs):
         super().__init__(**kwargs)
         self.duration = duration
         self.remaining = duration
         self.on_timeout = on_timeout
+        self.progress_bar = progress_bar
         self.event = None
         self.update_text()
+        self.update_bar()
 
     def start(self):
         self.stop()  # Deterno por si acaso 
         self.remaining = self.duration
         self.event = Clock.schedule_interval(self._tick, 1)
         self.update_text()
+    
+    def update_bar(self):
+        if self.progress_bar:
+            porcentaje = (self.remaining / self.duration) * 100
+            self.progress_bar.value = porcentaje
+
+            # Cambiar color según tiempo restante (opcional)
+            if porcentaje > 60:
+                self.progress_bar.color = [0, 1, 0, 1]  # verde
+            elif porcentaje > 30:
+                self.progress_bar.color = [1, 1, 0, 1]  # amarillo
+            else:
+                self.progress_bar.color = [1, 0, 0, 1]  # rojo
 
     def _tick(self, dt):
         self.remaining -= 1
         self.update_text()
+        self.update_bar()
         if self.remaining <= 0:
             self.stop()
             if self.on_timeout:
@@ -72,10 +90,12 @@ class Timer(Label):
 
     def update_text(self):
         self.text = f"{self.remaining} s"
-        if self.remaining <= 5:
-            self.color = (1, 0, 0, 1)  # color rojo
+        if self.remaining > 6:
+            self.color = (0, 1, 0, 1)  # color cerde
+        elif self.remaining > 3:
+            self.color = (1, 1, 0, 1) # color amarillo
         else:
-            self.color = (1, 1, 1, 1)  # color negro
+            self.color = (1, 0, 0, 1)  # color negro
             
 class Suma(MDScreen):
     def __init__(self, **kwargs):
@@ -85,7 +105,7 @@ class Suma(MDScreen):
         self.evento_generacion = None
 
     def on_kv_post(self, base_widget):
-        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado)
+        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado, progress_bar=self.ids.barra_tiempo)
         self.ids.contador.add_widget(self.timer)
 
     def on_enter(self):
@@ -209,7 +229,7 @@ class Resta(MDScreen):
         self.evento_generacion = None
 
     def on_kv_post(self, base_widget):
-        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado)
+        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado, progress_bar=self.ids.barra_tiempo)
         self.ids.contador.add_widget(self.timer)
 
     def on_enter(self):
@@ -328,7 +348,7 @@ class Multiplicacion(MDScreen):
         self.evento_generacion = None
 
     def on_kv_post(self, base_widget):
-        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado)
+        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado, progress_bar=self.ids.barra_tiempo)
         self.ids.contador.add_widget(self.timer)
 
     def on_enter(self):
@@ -453,7 +473,7 @@ class Division(MDScreen):
         self.evento_generacion = None
 
     def on_kv_post(self, base_widget):
-        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado)
+        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado, progress_bar=self.ids.barra_tiempo)
         self.ids.contador.add_widget(self.timer)
 
     def on_enter(self):
@@ -584,7 +604,7 @@ class Ecuacionbasica(MDScreen):
         self.evento_generacion = None
 
     def on_kv_post(self, base_widget):
-        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado)
+        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado, progress_bar=self.ids.barra_tiempo)
         self.ids.contador.add_widget(self.timer)
     
     def on_enter(self):
@@ -704,14 +724,164 @@ class Ecuacionbasica(MDScreen):
 
         if hasattr(self, 'timer'):
             self.timer.stop()
-
+    
 class Ecuacionsegundo(MDScreen): pass
 
-class Desafio(MDScreen): pass
+class Desafio(MDScreen): 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.generando = False
+        self.tiempo_limite = 10  # segundos
+        self.evento_generacion = None
+
+    def on_kv_post(self, base_widget):
+        self.timer = Timer(duration=self.tiempo_limite, on_timeout=self.tiempo_agotado, progress_bar=self.ids.barra_tiempo)
+        self.ids.contador.add_widget(self.timer)
+
+    def on_enter(self):
+        self.generar_numero()
+
+    def generar_numero(self):
+        if self.generando:
+            return
+        self.generando = True
+        #se establece la dificultad del ejercicio
+        dificultad = App.get_running_app().dificultad
+        if dificultad == "facil":
+            rango = (1, 10)
+        elif dificultad == "medio":
+            rango = (10, 15)
+        elif dificultad == "dificil":
+            rango = (15, 20)
+        else: 
+            rango = (1, 10)
+        
+        print("generando ejercicio de Desafio") #comprobar en el cmd
+        self.n1 = random.randint(*rango)
+        self.n2 = random.randint(*rango)
+        self.x_real = random.randint(*rango)
+        self.ids.resultado.text = ""
+        self.timer.start()
+        self.timer.update_text()
+        self.generar_opciones()
+        self.generando = False
+    #Generar las distintas opciones
+    def generar_opciones(self):
+        self.ids.opciones_respuesta.clear_widgets()
+        operacion = random.choice(['+', '-', '*', '/', 'ex']) #operacion aleatoria
+        
+        #determinamos el ejercicio
+        if operacion == '+':
+            print("generado Suma")
+            correcta = self.n1 + self.n2
+            ejercicio_str = f"{self.n1} + {self.n2}"
+            
+        elif operacion == '-':
+            print("generado resta")
+            correcta = self.n1 - self.n2
+            ejercicio_str = f"{self.n1} - {self.n2}"
+            
+        elif operacion == '*':
+            print("generado multiplicacion")
+            correcta = self.n1 * self.n2
+            ejercicio_str = f"{self.n1} x {self.n2}"
+            
+        elif operacion == '/':
+            print("generado division")
+            self.n1 = self.n1 * self.n2
+            correcta = self.n1 // self.n2
+            ejercicio_str = f"{self.n1} ÷ {self.n2}"
+        
+        elif operacion == 'ex':
+            self.n3 = self.n1 * self.x_real + self.n2
+            correcta = self.x_real
+            ejercicio_str = f"{self.n1}x + {self.n2} = {self.n3}"
+            
+        self.ids.ejercicio.text = ejercicio_str
+        self.resultado_correcto = correcta    
+        opciones = [correcta]
+
+        # Genera 3 distractores únicos
+        while len(opciones) < 4:
+            distractor = random.randint(correcta - 10, correcta + 10)
+            if distractor != correcta and distractor not in opciones:
+                opciones.append(distractor)
+
+        random.shuffle(opciones)
+        
+        for valor in opciones:
+            card = MDCard(
+                size_hint=(1, None),
+                height=dp(60),
+                radius=[12],
+                elevation=4,
+                padding=dp(10),
+                md_bg_color=App.get_running_app().colors["card"]
+            )
+
+            btn = MDRaisedButton(
+                text=str(valor),
+                size_hint=(1, 1),
+                md_bg_color=App.get_running_app().colors["card"],
+                text_color=App.get_running_app().colors["text"],
+            )
+            
+            btn.on_release = partial(self.verificar_opcion, valor, card, btn)
+            
+            card.add_widget(btn)
+            self.ids.opciones_respuesta.add_widget(card)
+        
+    def verificar_opcion(self, seleccion, *args):
+        self.timer.stop()
+        correcta = self.resultado_correcto
+
+        for card in self.ids.opciones_respuesta.children:
+            for widget in card.children:
+                if isinstance(widget, MDRaisedButton):
+                    if int(widget.text) == seleccion:
+                        if seleccion == correcta:
+                            card.md_bg_color = [0, 0.6, 0, 1]  # Verde
+                            widget.md_bg_color = [0, 0.6, 0, 1]
+                            self.ids.resultado.text = "¡Correcto! :)"
+                            self.ids.resultado.text_color = [0, 0.6, 0, 1]
+
+                        else:
+                            card.md_bg_color = [1, 0, 0, 1]    # Rojo
+                            widget.md_bg_color = [1, 0, 0, 1]
+                            self.ids.resultado.text = f"Incorrecto :( la respuesta era = {correcta}"
+                            self.ids.resultado.text_color = [1, 0, 0, 1]
+                            
+        Clock.unschedule(self.generar_numero)
+        self.evento_generacion = Clock.schedule_once(lambda dt: self.generar_numero(), 3)
+
+    def tiempo_agotado(self):
+        self.ids.resultado.text = "Tiempo agotado :o"
+        self.ids.resultado.text_color = [1, 0.5, 0, 1]
+        
+        # Desactivar botones
+        for container in self.ids.opciones_respuesta.children:
+            for widget in container.children:
+                if isinstance(widget, MDRaisedButton):
+                    widget.disabled = True
+
+        #Cancelar eventos anteriores
+        if self.evento_generacion:
+            Clock.unschedule(self.evento_generacion)
+            
+        self.evento_generacion = Clock.schedule_once(lambda dt: self.generar_numero(), 2)
+    
+    def on_leave(self):
+        print("Saliendo de pantalla Suma") #verificar en el CMD
+        if self.evento_generacion:
+            Clock.unschedule(self.evento_generacion)
+            self.evento_generacion = None
+
+        if hasattr(self, 'timer'):
+            self.timer.stop()
     
 class GestorPantalla(ScreenManager): pass
 
-class Sigma(MDApp):        
+class Sigma(MDApp):         
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.palette = ColorPalette()
