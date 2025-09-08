@@ -1,589 +1,1912 @@
 GestorPantalla:
     MenuPrincipal:
     Ejercicios:
-    Suma:
-    Resta:
-    Multiplicacion:
-    Division:
     Ecuaciones:
-    EcuacionBasica:
+    Desafio:
+    Ecuacionbasicadificultad:
+    Ecuacionbasica:
+    Ecuacionsegundo:
+    Sumadificultad:
+    Suma:
+    Restadificultad:
+    Resta:
+    Multiplicaciondificultad:
+    Multiplicacion:
+    Divisiondificultad:
+    Division:
+
+<CurvedButton@MDRaisedButton>:
+    radius: [12]
+    md_bg_color: app.colors["primary"]
+    text_color: app.colors["text"]
+    elevation: 3
+    font_size: "16sp"
+    size_hint: None, None
+    size: dp(200), dp(50)
 
 <MenuPrincipal>:
     name: "menu"
 
+    #fondo general-----------------------------------------
     MDBoxLayout:
         orientation: "vertical"
-        padding: "20dp"
-        spacing: "20dp"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
 
-        canvas.before:
-            Color:
-                rgba: app.colors['bg']
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        MDToolbar:
-            title: "Sigma - Matemáticas"
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
             elevation: 10
-            pos_hint: {"top": 1}
-            md_bg_color: app.colors['header']
-            text_color: app.colors['text']
-            specific_text_color: app.colors['text']
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - App"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
         
-        MDLabel:
-            text: "¡Bienvenido a SIGMA! Elige una opción para comenzar"
-            theme_text_color: "Custom"
-            text_color: app.colors['text']
-            halign: "center"
-            font_style: "H5"
-
-        MDRaisedButton:
-            text: "Operaciones Basicas"
-            font_size: "20sp"
+        #Center---------------------------------------------------
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: dp(40)
+            size_hint_y: None
+            height: self.minimum_height
             pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.manager.current = "Ejercicios"
 
-        MDRaisedButton:
-            text: "Ecuaciones"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.manager.current = "Ecuaciones"
+            MDLabel:
+                text: "Bienvenidos a Sigma - App"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                size_hint_y: None
+                height: self.texture_size[1]
 
-        MDRaisedButton:
-            text: "Salir"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.4, None
-            height: "48dp"
-            md_bg_color: [1, 0.3, 0.3, 1]
-            on_release: app.stop()
+        #boton de operaciones Basicas-----
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+  
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
 
-<Ecuaciones>:
-    name: "Ecuaciones"
-    MDBoxLayout:
-        orientation: "vertical"
-        padding: "20dp"
-        spacing: "20dp"
+                MDRaisedButton:
+                    text: "Operaciones Básicas"
+                    on_release: root.manager.current = "ejercicios"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
 
-        canvas.before:
-            Color:
-                rgba: app.colors['bg']
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        MDToolbar:
-            title: "Ecuaciones"
-            elevation: 10
-            pos_hint: {"top": 1}
-            md_bg_color: app.colors['header']
-            text_color: app.colors['text']
-            pos_hint: {"top": 1}
-
-        MDLabel:
-            text: "Elija el tipo de Ecuacion"
-            theme_text_color: "Custom"
-            text_color: app.colors['text']
-            halign: "center"
-            font_style: "H5"
-        
-        MDRaisedButton:
-            text: "Ecuacion de primer grado"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.manager.current = "EcuacionBasica"
+        #Boton de Ecuaciones--------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
             
-        MDRaisedButton:
-            text: "volver al menu"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.4, None
-            height: "48dp"
-            md_bg_color: [1, 0.3, 0.3, 1]
-            on_release: root.manager.current = "menu"
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Ecuaciones"
+                    on_release: root.manager.current = "ecuaciones"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+        
+        #Boton de Desafio--------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+            
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Desafio Sigma"
+                    on_release: root.manager.current = "desafio"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Bellow----------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione la operacion que desee practicar"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
 
 <Ejercicios>:
-    name: "Ejercicios"
+    name: "ejercicios"
+    
+    #fondo general-----------------------------------------
     MDBoxLayout:
         orientation: "vertical"
-        padding: "20dp"
-        spacing: "20dp"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
 
-        canvas.before:
-            Color:
-                rgba: app.colors['bg']
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        MDToolbar:
-            title: "Ejercicios"
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
             elevation: 10
-            pos_hint: {"top": 1}
-            md_bg_color: app.colors['header']
-            text_color: app.colors['text']
-            specific_text_color: app.colors['text']
+            padding: dp(10)
+            orientation: "horizontal"
 
-        MDLabel:
-            text: "Elija su operacion"
-            theme_text_color: "Custom"
-            text_color: app.colors['text']
-            halign: "center"
-            font_style: "H5"
-
-        MDRaisedButton:
-            text: "Suma"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.manager.current = "suma"
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Operaciones Básicas"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
         
-        MDRaisedButton:
-            text: "Resta"
-            font_size: "20sp"
+        #Center---------------------------------------------------
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: dp(40)
+            size_hint_y: None
+            height: self.minimum_height
             pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.manager.current = "Resta"
 
-        MDRaisedButton:
-            text: "Multiplicación"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.manager.current = "Multiplicacion"
+            MDLabel:
+                text: "Seleccione un tipo de ejercicio"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                size_hint_y: None
+                height: self.texture_size[1]
         
-        MDRaisedButton:
-            text: "Division"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.manager.current = "Division"
+        #Boton de Suma-----------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
 
-        MDRaisedButton:
-            text: "Volver al menu principal"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.4, None
-            height: "48dp"
-            md_bg_color: [1, 0.3, 0.3, 1]
-            on_release: root.manager.current = "menu"
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
 
-<Suma>:
-    name: "suma"
-    on_enter: root.generar_numero()
+                MDRaisedButton:
+                    text: "Suma"
+                    on_release: root.manager.current = "sumadificultad"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
 
-    MDBoxLayout:
-        orientation: "vertical"
-        padding: "20dp"
-        spacing: "30dp"
+        #Boton de Resta------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
 
-        canvas.before:
-            Color:
-                rgba: app.colors['bg']
-            Rectangle:
-                pos: self.pos
-                size: self.size
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
 
-        MDToolbar:
-            title: "Ejercio - Suma"
-            elevation: 10
-            pos_hint: {"top": 1}
-            md_bg_color: app.colors['header']
-            text_color: app.colors['text']
-            specific_text_color: app.colors['text']
-
-        MDBoxLayout:
-            orientation: "horizontal"
-            spacing: "10dp"
-            size_hint_y: None
-            height: self.minimum_height
-            pos_hint: {"center_x": 0.5}
-
-            MDLabel:
-                id: num1
-                text: ""
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-            MDLabel:
-                text: "+"
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-            MDLabel:
-                id: num2
-                text: ""
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-        MDTextField:
-            id: respuesta
-            hint_text: "Escribe tu respuesta"
-            input_filter: "float"
-            mode: "rectangle"
-            size_hint_x: 0.8
-            pos_hint: {"center_x": 0.5}
-
-        MDRaisedButton:
-            text: "Verificar respuesta"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.calcular()
-
-        MDLabel:
-            id: resultado
-            text: ""
-            halign: "center"
-            theme_text_color: "Custom"
-            text_color: 0, 0, 0, 1
-
-        MDRaisedButton:
-            text: "Volver al menu principal"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.4, None
-            height: "48dp"
-            md_bg_color: [1, 0.3, 0.3, 1]
-            on_release: root.manager.current = "Ejercicios"
-
-<Resta>:
-    name: "Resta"
-    on_enter: root.generar_numero()
-
-    MDBoxLayout:
-        orientation: "vertical"
-        padding: "20dp"
-        spacing: "30dp"
-
-        canvas.before:
-            Color:
-                rgba: app.colors['bg']
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        MDToolbar:
-            title: "Ejercio - Resta"
-            elevation: 10
-            pos_hint: {"top": 1}
-            md_bg_color: app.colors['header']
-            text_color: app.colors['text']
-            specific_text_color: app.colors['text']
-
-        MDBoxLayout:
-            orientation: "horizontal"
-            spacing: "10dp"
-            size_hint_y: None
-            height: self.minimum_height
-            pos_hint: {"center_x": 0.5}
-
-            MDLabel:
-                id: num1
-                text: ""
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-            MDLabel:
-                text: "-"
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-            MDLabel:
-                id: num2
-                text: ""
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-        MDTextField:
-            id: respuesta
-            hint_text: "Escribe tu respuesta"
-            input_filter: "float"
-            mode: "rectangle"
-            size_hint_x: 0.8
-            pos_hint: {"center_x": 0.5}
-
-        MDRaisedButton:
-            text: "Verificar respuesta"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.calcular()
-
-        MDLabel:
-            id: resultado
-            text: ""
-            halign: "center"
-            theme_text_color: "Custom"
-            text_color: 0, 0, 0, 1
-
-        MDRaisedButton:
-            text: "Volver al menu principal"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.4, None
-            height: "48dp"
-            md_bg_color: [1, 0.3, 0.3, 1]
-            on_release: root.manager.current = "Ejercicios"
-
-<Multiplicacion>:
-    name: "Multiplicacion"
-    on_enter: root.generar_numero()
-
-    MDBoxLayout:
-        orientation: "vertical"
-        padding: "20dp"
-        spacing: "20dp"
-
-        canvas.before:
-            Color:
-                rgba: app.colors['bg']
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        MDToolbar:
-            title: "Ejercio - Multiplicación"
-            elevation: 10
-            pos_hint: {"top": 1}
-            md_bg_color: app.colors['header']
-            text_color: app.colors['text']
-            specific_text_color: app.colors['text']
-
-        MDBoxLayout:
-            orientation: "horizontal"
-            spacing: "10dp"
-            size_hint_y: None
-            height: self.minimum_height
-            pos_hint: {"center_x": 0.5}
-
-            MDLabel:
-                id: num1
-                text: ""
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-            MDLabel:
-                text: "×"
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-            MDLabel:
-                id: num2
-                text: ""
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-        MDTextField:
-            id: respuesta
-            hint_text: "Escribe tu respuesta"
-            input_filter: "float"
-            mode: "rectangle"
-            size_hint_x: 0.8
-            pos_hint: {"center_x": 0.5}
-
-        MDRaisedButton:
-            text: "Verificar respuesta"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.calcular()
-
-        MDLabel:
-            id: resultado
-            text: ""
-            halign: "center"
-            theme_text_color: "Custom"
-            text_color: 0, 0, 0, 1
-
-        MDRaisedButton:
-            text: "Volver al menu principal"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.4, None
-            height: "48dp"
-            md_bg_color: [1, 0.3, 0.3, 1]
-            on_release: root.manager.current = "Ejercicios"
-
-<Division>:
-    name: "Division"
-    on_enter: root.generar_numero()
-
-    MDBoxLayout:
-        orientation: "vertical"
-        padding: "20dp"
-        spacing: "20dp"
-
-        canvas.before:
-            Color:
-                rgba: app.colors['bg']
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        MDToolbar:
-            title: "Ejercio - División"
-            elevation: 10
-            pos_hint: {"top": 1}
-            md_bg_color: app.colors['header']
-            text_color: app.colors['text']
-            specific_text_color: app.colors['text']
-
-        MDBoxLayout:
-            orientation: "horizontal"
-            spacing: "10dp"
-            size_hint_y: None
-            height: self.minimum_height
-            pos_hint: {"center_x": 0.5}
-
-            MDLabel:
-                id: num1
-                text: ""
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-            MDLabel:
-                text: "/"
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-            MDLabel:
-                id: num2
-                text: ""
-                halign: "center"
-                font_style: "H5"
-                theme_text_color: "Custom"
-                text_color: app.colors['text']
-
-        MDTextField:
-            id: respuesta
-            hint_text: "Escribe tu respuesta"
-            input_filter: "float"
-            mode: "rectangle"
-            size_hint_x: 0.8
-            pos_hint: {"center_x": 0.5}
-
-        MDRaisedButton:
-            text: "Verificar respuesta"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.calcular()
-
-        MDLabel:
-            id: resultado
-            text: ""
-            halign: "center"
-            theme_text_color: "Custom"
-            text_color: 0, 0, 0, 1
-
-        MDRaisedButton:
-            text: "Volver al menu principal"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.4, None
-            height: "48dp"
-            md_bg_color: [1, 0.3, 0.3, 1]
-            on_release: root.manager.current = "Ejercicios"
+                MDRaisedButton:
+                    text: "Resta"
+                    on_release: root.manager.current = "restadificultad"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
         
-<EcuacionBasica>:
-    name: "EcuacionBasica"
+        #Boton de Multiplicacion-----------------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Multiplicacion"
+                    on_release: root.manager.current = "multiplicaciondificultad"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+        
+        #Boton de Division----------------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Division"
+                    on_release: root.manager.current = "divisiondificultad"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "menu"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione la operacion que desee practicar"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+
+<Ecuacionbasicadificultad>:
+    name: "ecuacionbasicadificultad"
+
+    #fondo general-----------------------------------------
     MDBoxLayout:
         orientation: "vertical"
-        padding: "20dp"
-        spacing: "20dp"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
 
-        canvas.before:
-            Color:
-                rgba: app.colors['bg']
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        MDToolbar:
-            title: "Ejercio - Ecuacion de primer grado"
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
             elevation: 10
-            pos_hint: {"top": 1}
-            md_bg_color: app.colors['header']
-            text_color: app.colors['text']
-            specific_text_color: app.colors['text']
+            padding: dp(10)
+            orientation: "horizontal"
 
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Ecuacion Basica"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+        
+        #Center---------------------------------------------------
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: dp(40)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Seleccione la dificultad de la ecuacion"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                size_hint_y: None
+                height: self.texture_size[1]
+        
+        #Boton de facil-----------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Facil"
+                    on_release: app.set_dificultad("facil"); root.manager.current = "ecuacionbasica"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Boton de medio------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Medio"
+                    on_release: app.set_dificultad("medio"); root.manager.current = "ecuacionbasica"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+        
+        #Boton de dificil-----------------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Dificil"
+                    on_release: app.set_dificultad("dificil"); root.manager.current = "ecuacionbasica"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ecuaciones"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione el nivel de dificultad"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+
+<Ecuacionbasica>:
+    name: "ecuacionbasica"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Ecuación Básicas"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+                size_hint_x: None
+                width: dp(200)
+
+            Widget:  # Empuja el contador hacia la derecha
+
+            BoxLayout:
+                id: contador
+                size_hint_x: None
+                width: dp(80)
+                height: dp(40)
+                padding: dp(5)
+
+        #Center-------------------------------------------------------------------------------
+        #Contenedor con los numeros a despejar----
         MDLabel:
-            id: ecuacion_label
-            text: "Ecuación: "
-            halign: "center"
-            theme_text_color: "Custom"
-            text_color: 0, 0, 0, 1
+            id: resultado_label
 
-        MDTextField:
-            id: respuesta_input
-            hint_text: "Ingresa el valor de x"
-            mode: "rectangle"
-            input_filter: "int"
-            size_hint_x: 0.6
+        MDCard:
+            id: contenedor_numeros
+            radius: [20]
+            size_hint: None, None
+            size: dp(300), dp(80)
+            elevation: 6
+            md_bg_color: app.colors["primary_dark"]
+            padding: dp(10)
+            orientation: "horizontal"
             pos_hint: {"center_x": 0.5}
 
-        MDRaisedButton:
-            text: "Verificar"
-            font_size: "20sp"
-            pos_hint: {"center_x": 0.5}
-            size_hint: 0.6, None
-            height: "48dp"
-            text_color: app.colors['text']
-            on_release: root.verificar_respuesta()
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: dp(5)
+                size_hint_y: None
+                height: dp(50)
+                pos_hint: {"center_x": 0.5}
 
+                MDLabel:
+                    id: ecuacion_label
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+        #contenedores con opciones------
         MDLabel:
             id: resultado_label
             text: ""
             halign: "center"
             theme_text_color: "Custom"
-            text_color: [0, 0, 0, 1]
-        
-        MDRaisedButton:
-            text: "Volver al menu principal"
+            text_color: app.colors["text"]
+            font_size: "18sp"
+            size_hint_y: None
+            height: dp(40)
+
+        MDBoxLayout:
+            id: opciones_respuesta
+            orientation: "vertical"
+            spacing: dp(10)
+            size_hint_y: None
+            height: self.minimum_height
             pos_hint: {"center_x": 0.5}
-            size_hint: 0.4, None
-            height: "48dp"
-            md_bg_color: [1, 0.3, 0.3, 1]
-            on_release: root.manager.current = "Ejercicios"
+
+    #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ecuaciones"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione la operacion que desee practicar"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+
+<Ecuacionsegundo>:
+    name: "ecuacionsegundo"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Ecuación de segundo grado"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+                size_hint_x: None
+                width: dp(200)
+
+            Widget:  # Empuja el contador hacia la derecha
+    
+    #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ecuaciones"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "En desarrollo"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+        
+<Desafio>:
+    name: "desafio"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Desafio - Sigma"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+        
+        #Center---------------------------------------------------
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: dp(40)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Bienvenidos al desafio Sigma (explicación)"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                size_hint_y: None
+                height: self.texture_size[1]
+        
+        #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "menu"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione el nivel de dificultad"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+
+<Ecuaciones>:
+    name: "ecuaciones"
+        
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma -Ecuaciones"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+        
+        #Center---------------------------------------------------
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: dp(40)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Seleccione un tipo de ejercicio"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                size_hint_y: None
+                height: self.texture_size[1]
+        
+        #Boton de Ecuacion Basica-----------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Ecuacion Basica"
+                    on_release: root.manager.current = "ecuacionbasicadificultad"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Boton de ecuacion de segundo grado------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Ecuacion de Segundo grado"
+                    on_release: root.manager.current = "ecuacionsegundo"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+                
+        #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "menu"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione la operacion que desee practicar"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+
+<Sumadificultad>:
+    name: "sumadificultad"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Suma"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+        
+        #Center---------------------------------------------------
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: dp(40)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Seleccione la dificultad de la suma"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                size_hint_y: None
+                height: self.texture_size[1]
+        
+        #Boton de facil-----------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Facil"
+                    on_release: app.set_dificultad("facil"); root.manager.current = "suma"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Boton de medio------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Medio"
+                    on_release: app.set_dificultad("medio"); root.manager.current = "suma"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+        
+        #Boton de dificil-----------------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Dificil"
+                    on_release: app.set_dificultad("dificil"); root.manager.current = "suma"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ejercicios"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione el nivel de dificultad"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+
+<Suma>:
+    name: "suma"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Suma"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+                size_hint_x: None
+                width: dp(200)
+
+            Widget:  # Empuja el contador hacia la derecha
+
+            BoxLayout:
+                id: contador
+                size_hint_x: None
+                width: dp(80)
+                height: dp(40)
+                padding: dp(5)
+
+        #Center-------------------------------------------------------------------------------
+        #Contenedor con los numeros a sumar----
+        MDLabel:
+            id: resultado
+
+        MDCard:
+            id: contenedor_numeros
+            radius: [20]
+            size_hint: None, None
+            size: dp(300), dp(80)
+            elevation: 6
+            md_bg_color: app.colors["primary_dark"]
+            padding: dp(10)
+            orientation: "horizontal"
+            pos_hint: {"center_x": 0.5}
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: dp(5)
+                size_hint_y: None
+                height: dp(50)
+                pos_hint: {"center_x": 0.5}
+
+                MDLabel:
+                    id: num1
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+                MDLabel:
+                    text: "+"
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+                MDLabel:
+                    id: num2
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+        
+        #contenedores con opciones------
+        MDLabel:
+            id: resultado
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: app.colors["text"]
+            font_size: "18sp"
+            size_hint_y: None
+            height: dp(40)
+
+        MDBoxLayout:
+            id: opciones_respuesta
+            orientation: "vertical"
+            spacing: dp(10)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+        #Bottom--------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 0
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ejercicios"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+<Restadificultad>:
+    name: "restadificultad"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Resta"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+        
+        #Center---------------------------------------------------
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: dp(40)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Seleccione la dificultad de la resta"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                size_hint_y: None
+                height: self.texture_size[1]
+        
+        #Boton de facil-----------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Facil"
+                    on_release: app.set_dificultad("facil"); root.manager.current = "resta"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Boton de medio------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Medio"
+                    on_release: app.set_dificultad("medio"); root.manager.current = "resta"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+        
+        #Boton de dificil-----------------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Dificil"
+                    on_release: app.set_dificultad("dificil"); root.manager.current = "resta"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ejercicios"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione el nivel de dificultad"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+
+<Resta>:
+    name: "resta"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Resta"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+                size_hint_x: None
+                width: dp(200)
+
+            Widget:  # Empuja el contador hacia la derecha
+
+            BoxLayout:
+                id: contador
+                size_hint_x: None
+                width: dp(80)
+                height: dp(40)
+                padding: dp(5)
+                
+        #Center-------------------------------------------------------------------------------
+        #Contenedor con los numeros a restar----
+        MDLabel:
+            id: resultado
+
+        MDCard:
+            id: contenedor_numeros
+            radius: [20]
+            size_hint: None, None
+            size: dp(300), dp(80)
+            elevation: 6
+            md_bg_color: app.colors["primary_dark"]
+            padding: dp(10)
+            orientation: "horizontal"
+            pos_hint: {"center_x": 0.5}
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: dp(5)
+                size_hint_y: None
+                height: dp(50)
+                pos_hint: {"center_x": 0.5}
+
+                MDLabel:
+                    id: num1
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+                MDLabel:
+                    text: "-"
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+                MDLabel:
+                    id: num2
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+        
+        #contenedores con opciones------
+        MDLabel:
+            id: resultado
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: app.colors["text"]
+            font_size: "18sp"
+            size_hint_y: None
+            height: dp(40)
+
+        MDBoxLayout:
+            id: opciones_respuesta
+            orientation: "vertical"
+            spacing: dp(10)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+        #Bottom--------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 0
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ejercicios"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+<Multiplicaciondificultad>:
+    name: "multiplicaciondificultad"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Multiplicacion"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+        
+        #Center---------------------------------------------------
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: dp(40)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Seleccione la dificultad de la Multiplicacion"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                size_hint_y: None
+                height: self.texture_size[1]
+        
+        #Boton de facil-----------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Facil"
+                    on_release: app.set_dificultad("facil"); root.manager.current = "multiplicacion"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Boton de medio------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Medio"
+                    on_release: app.set_dificultad("medio"); root.manager.current = "multiplicacion"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+        
+        #Boton de dificil-----------------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Dificil"
+                    on_release: app.set_dificultad("dificil"); root.manager.current = "multiplicacion"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ejercicios"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione el nivel de dificultad"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+
+<Multiplicacion>:
+    name: "multiplicacion"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Multiplicacion"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+                size_hint_x: None
+                width: dp(200)
+
+            Widget:  # Empuja el contador hacia la derecha
+
+            BoxLayout:
+                id: contador
+                size_hint_x: None
+                width: dp(80)
+                height: dp(40)
+                padding: dp(5)
+                
+        #Center-------------------------------------------------------------------------------
+        #Contenedor con los numeros a multiplicar----
+        MDLabel:
+            id: resultado
+
+        MDCard:
+            id: contenedor_numeros
+            radius: [20]
+            size_hint: None, None
+            size: dp(300), dp(80)
+            elevation: 6
+            md_bg_color: app.colors["primary_dark"]
+            padding: dp(10)
+            orientation: "horizontal"
+            pos_hint: {"center_x": 0.5}
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: dp(5)
+                size_hint_y: None
+                height: dp(50)
+                pos_hint: {"center_x": 0.5}
+
+                MDLabel:
+                    id: num1
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+                MDLabel:
+                    text: "x"
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+                MDLabel:
+                    id: num2
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+        
+        #contenedores con opciones------
+        MDLabel:
+            id: resultado
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: app.colors["text"]
+            font_size: "18sp"
+            size_hint_y: None
+            height: dp(40)
+
+        MDBoxLayout:
+            id: opciones_respuesta
+            orientation: "vertical"
+            spacing: dp(10)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+        #Bottom--------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 0
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ejercicios"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+<Divisiondificultad>:
+    name: "divisiondificultad"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - division"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+        
+        #Center---------------------------------------------------
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: dp(40)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Seleccione la dificultad de la division"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                size_hint_y: None
+                height: self.texture_size[1]
+        
+        #Boton de facil-----------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Facil"
+                    on_release: app.set_dificultad("facil"); root.manager.current = "division"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Boton de medio------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Medio"
+                    on_release: app.set_dificultad("medio"); root.manager.current = "division"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+        
+        #Boton de dificil-----------------------------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: app.colors["primary"]
+
+                MDRaisedButton:
+                    text: "Dificil"
+                    on_release: app.set_dificultad("dificil"); root.manager.current = "division"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
+
+        #Bellow----------------------------------------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 4
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ejercicios"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
+
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 1
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Seleccione el nivel de dificultad"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "center"
+                valign: "middle"
+
+<Division>:
+    name: "division"
+
+    #fondo general-----------------------------------------
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: app.colors["bg"]
+
+        #Header-----------------------------------------------------------------------
+        MDCard:
+            size_hint_y: None
+            height: dp(60)
+            radius: [20, 20, 0, 0]  # Curvas arriba, recto abajo
+            md_bg_color: app.colors["card"]
+            elevation: 10
+            padding: dp(10)
+            orientation: "horizontal"
+
+            #texto dentro del header
+            MDLabel:
+                text: "Sigma - Multiplicacion"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
+                halign: "left"
+                valign: "middle"
+                size_hint_x: None
+                width: dp(200)
+
+            Widget:  # Empuja el contador hacia la derecha
+
+            BoxLayout:
+                id: contador
+                size_hint_x: None
+                width: dp(80)
+                height: dp(40)
+                padding: dp(5)
+                
+        #Center-------------------------------------------------------------------------------
+        #Contenedor con los numeros a multiplicar----
+        MDLabel:
+            id: resultado
+
+        MDCard:
+            id: contenedor_numeros
+            radius: [20]
+            size_hint: None, None
+            size: dp(300), dp(80)
+            elevation: 6
+            md_bg_color: app.colors["primary_dark"]
+            padding: dp(10)
+            orientation: "horizontal"
+            pos_hint: {"center_x": 0.5}
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: dp(5)
+                size_hint_y: None
+                height: dp(50)
+                pos_hint: {"center_x": 0.5}
+
+                MDLabel:
+                    id: dividendo
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+                MDLabel:
+                    text: "/"
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+
+                MDLabel:
+                    id: divisor
+                    text: ""
+                    font_size: "25sp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.colors["text"]
+        
+        #contenedores con opciones------
+        MDLabel:
+            id: resultado
+            text: ""
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: app.colors["text"]
+            font_size: "18sp"
+            size_hint_y: None
+            height: dp(40)
+
+        MDBoxLayout:
+            id: opciones_respuesta
+            orientation: "vertical"
+            spacing: dp(10)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+        #Bottom--------------------------------
+        AnchorLayout:
+            anchor_x: "right"
+            anchor_y: "bottom"
+
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(200), dp(50)
+                elevation: 0
+                md_bg_color: 1, 0, 0, 1
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: root.manager.current = "ejercicios"
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0)  # Fondo transparente
+                    text_color: app.colors["text"]
