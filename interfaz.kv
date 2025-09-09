@@ -128,6 +128,25 @@ GestorPantalla:
                     size_hint: 1, 1
                     md_bg_color: (0, 0, 0, 0) #fondo transparente
                     text_color: app.colors["text"]
+        
+        #Boton de Salida--------
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+            
+            MDCard:
+                radius: [20]
+                size_hint: None, None
+                size: dp(150), dp(50)
+                elevation: 4
+                md_bg_color: [1, 0, 0, 1] #Color rojo
+
+                MDRaisedButton:
+                    text: "Salir"
+                    on_release: app.close
+                    size_hint: 1, 1
+                    md_bg_color: (0, 0, 0, 0) #fondo transparente
+                    text_color: app.colors["text"]
 
         #Bellow----------------------------------------------------------------
         MDCard:
@@ -498,9 +517,25 @@ GestorPantalla:
 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a despejar----
-        MDLabel:
-            id: resultado_label
+        FloatLayout:
+            MDLabel:
+                id: resultado_label
+                pos_hint: {"center_x": 0.5, "top": 0.9}
 
+            CantidadEjer:
+                id: cantidadejer
+                text: "Ejercicio: 0"
+                pos_hint: {"x": 0.02, "top": 0.95}
+                size_hint: None, None
+                size: self.texture_size
+            
+            Ejercorrectos:
+                id: ejercorrectos
+                text: "Correctos: 0"
+                pos_hint: {"x": 0.02, "top": 0.55}
+                size_hint: None, None
+                size: self.texture_size
+        
         MDCard:
             id: contenedor_numeros
             radius: [20]
@@ -692,7 +727,7 @@ GestorPantalla:
             pos_hint: {"center_x": 0.5}
 
             MDLabel:
-                text: "Bienvenidos al desafio Sigma, Ejercicios de todo tipo se te mostraran en pantalla"
+                text: "Bienvenidos al desafio Sigma"
                 halign: "center"
                 font_style: "H4"
                 theme_text_color: "Custom"
@@ -843,8 +878,24 @@ GestorPantalla:
 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a sumar----
-        MDLabel:
-            id: resultado
+        FloatLayout:
+            MDLabel:
+                id: resultado
+                pos_hint: {"center_x": 0.5, "top": 0.9}
+
+            CantidadEjer:
+                id: cantidadejer
+                text: "Ejercicio: 0"
+                pos_hint: {"x": 0.02, "top": 0.95}
+                size_hint: None, None
+                size: self.texture_size
+            
+            Ejercorrectos:
+                id: ejercorrectos
+                text: "Correctos: 0"
+                pos_hint: {"x": 0.02, "top": 0.55}
+                size_hint: None, None
+                size: self.texture_size
 
         MDCard:
             id: contenedor_numeros
@@ -1222,8 +1273,24 @@ GestorPantalla:
 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a sumar----
-        MDLabel:
-            id: resultado
+        FloatLayout:
+            MDLabel:
+                id: resultado
+                pos_hint: {"center_x": 0.5, "top": 0.9}
+
+            CantidadEjer:
+                id: cantidadejer
+                text: "Ejercicio: 0"
+                pos_hint: {"x": 0.02, "top": 0.95}
+                size_hint: None, None
+                size: self.texture_size
+            
+            Ejercorrectos:
+                id: ejercorrectos
+                text: "Correctos: 0"
+                pos_hint: {"x": 0.02, "top": 0.55}
+                size_hint: None, None
+                size: self.texture_size
 
         MDCard:
             id: contenedor_numeros
@@ -1494,8 +1561,24 @@ GestorPantalla:
                 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a restar----
-        MDLabel:
-            id: resultado
+        FloatLayout:
+            MDLabel:
+                id: resultado
+                pos_hint: {"center_x": 0.5, "top": 0.9}
+
+            CantidadEjer:
+                id: cantidadejer
+                text: "Ejercicio: 0"
+                pos_hint: {"x": 0.02, "top": 0.95}
+                size_hint: None, None
+                size: self.texture_size
+            
+            Ejercorrectos:
+                id: ejercorrectos
+                text: "Correctos: 0"
+                pos_hint: {"x": 0.02, "top": 0.55}
+                size_hint: None, None
+                size: self.texture_size
 
         MDCard:
             id: contenedor_numeros
@@ -1766,8 +1849,24 @@ GestorPantalla:
                 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a multiplicar----
-        MDLabel:
-            id: resultado
+        FloatLayout:
+            MDLabel:
+                id: resultado
+                pos_hint: {"center_x": 0.5, "top": 0.9}
+
+            CantidadEjer:
+                id: cantidadejer
+                text: "Ejercicio: 0"
+                pos_hint: {"x": 0.02, "top": 0.95}
+                size_hint: None, None
+                size: self.texture_size
+            
+            Ejercorrectos:
+                id: ejercorrectos
+                text: "Correctos: 0"
+                pos_hint: {"x": 0.02, "top": 0.55}
+                size_hint: None, None
+                size: self.texture_size
 
         MDCard:
             id: contenedor_numeros
@@ -2011,7 +2110,7 @@ GestorPantalla:
 
             #texto dentro del header
             MDLabel:
-                text: "Sigma - Multiplicacion"
+                text: "Sigma - Division"
                 font_style: "H6"
                 theme_text_color: "Custom"
                 text_color: app.colors["text"]
@@ -2038,8 +2137,24 @@ GestorPantalla:
                 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a multiplicar----
-        MDLabel:
-            id: resultado
+        FloatLayout:
+            MDLabel:
+                id: resultado
+                pos_hint: {"center_x": 0.5, "top": 0.9}
+
+            CantidadEjer:
+                id: cantidadejer
+                text: "Ejercicio: 0"
+                pos_hint: {"x": 0.02, "top": 0.95}
+                size_hint: None, None
+                size: self.texture_size
+            
+            Ejercorrectos:
+                id: ejercorrectos
+                text: "Correctos: 0"
+                pos_hint: {"x": 0.02, "top": 0.55}
+                size_hint: None, None
+                size: self.texture_size
 
         MDCard:
             id: contenedor_numeros

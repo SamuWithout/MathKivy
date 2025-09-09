@@ -1,4 +1,5 @@
 import random
+from kivy.properties import NumericProperty
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
@@ -43,6 +44,28 @@ class Divisiondificultad(MDScreen): pass
 class Ecuaciones(MDScreen): pass
 
 class Desafiodificultad(MDScreen): pass
+
+class CantidadEjer(Label):
+    valor = NumericProperty(0)
+    
+    def incrementar(self, cantidad=1):
+        self.valor += cantidad
+        self.text = f"Ejercicio: {self.valor}"
+    
+    def reiniciar(self):
+        self.valor = 0
+        self.text = f"Ejercicio: {self.valor}"
+    
+class Ejercorrectos(Label):
+    valor = NumericProperty(0)
+    
+    def incrementar(self, cantidad=1):
+        self.valor += cantidad
+        self.text = f"Correctos: {self.valor}"
+    
+    def reiniciar(self):
+        self.valor = 0
+        self.text = f"Correctos: {self.valor}"
 
 class Timer(Label):
     def __init__(self, duration, on_timeout, progress_bar=None, **kwargs):
@@ -110,6 +133,8 @@ class Suma(MDScreen):
 
     def on_enter(self):
         self.generar_numero()
+        self.ids.cantidadejer.reiniciar()
+        self.ids.ejercorrectos.reiniciar()
 
     def generar_numero(self):
         if self.generando:
@@ -186,7 +211,8 @@ class Suma(MDScreen):
                             widget.md_bg_color = [0, 0.6, 0, 1]
                             self.ids.resultado.text = "¡Correcto! :)"
                             self.ids.resultado.text_color = [0, 0.6, 0, 1]
-
+                            self.ids.ejercorrectos.incrementar()
+                            
                         else:
                             card.md_bg_color = [1, 0, 0, 1]    # Rojo
                             widget.md_bg_color = [1, 0, 0, 1]
@@ -195,10 +221,12 @@ class Suma(MDScreen):
                             
         Clock.unschedule(self.generar_numero)
         self.evento_generacion = Clock.schedule_once(lambda dt: self.generar_numero(), 3)
+        self.ids.cantidadejer.incrementar() #contador aumenta
 
     def tiempo_agotado(self):
         self.ids.resultado.text = "Tiempo agotado :o"
         self.ids.resultado.text_color = [1, 0.5, 0, 1]
+        self.ids.cantidadejer.incrementar()
         
         # Desactivar botones
         for container in self.ids.opciones_respuesta.children:
@@ -234,6 +262,8 @@ class Resta(MDScreen):
 
     def on_enter(self):
         self.generar_numero()
+        self.ids.cantidadejer.reiniciar()
+        self.ids.ejercorrectos.reiniciar()
 
     def generar_numero(self):
         if self.generando:
@@ -311,7 +341,7 @@ class Resta(MDScreen):
                             widget.md_bg_color = [0, 0.6, 0, 1]
                             self.ids.resultado.text = "¡Correcto! :)"
                             self.ids.resultado.text_color = [0, 0.6, 0, 1]
-
+                            self.ids.ejercorrectos.incrementar()
                         else:
                             card.md_bg_color = [1, 0, 0, 1]    # Rojo
                             widget.md_bg_color = [1, 0, 0, 1]
@@ -320,6 +350,7 @@ class Resta(MDScreen):
                             
         Clock.unschedule(self.generar_numero)
         self.evento_generacion = Clock.schedule_once(lambda dt: self.generar_numero(), 2)
+        self.ids.cantidadejer.incrementar()
 
     def tiempo_agotado(self):
         self.ids.resultado.text = "Tiempo agotado :o"
@@ -330,6 +361,7 @@ class Resta(MDScreen):
             Clock.unschedule(self.evento_generacion)
             
         self.evento_generacion = Clock.schedule_once(lambda dt: self.generar_numero(), 2)
+        self.ids.cantidadejer.incrementar() #contador aumenta
     
     def on_leave(self):
         print("Saliendo de pantalla Resta") #verificar en el CMD
@@ -353,6 +385,8 @@ class Multiplicacion(MDScreen):
 
     def on_enter(self):
         self.generar_numero()
+        self.ids.ejercorrectos.reiniciar()
+        self.ids.cantidadejer.reiniciar()
 
     def generar_numero(self):
         if self.generando:
@@ -430,6 +464,7 @@ class Multiplicacion(MDScreen):
                             widget.md_bg_color = [0, 0.6, 0, 1]
                             self.ids.resultado.text = "¡Correcto! :)"
                             self.ids.resultado.text_color = [0, 0.6, 0, 1]
+                            self.ids.ejercorrectos.incrementar()
 
                         else:
                             card.md_bg_color = [1, 0, 0, 1]    # Rojo
@@ -439,10 +474,12 @@ class Multiplicacion(MDScreen):
 
         Clock.unschedule(self.generar_numero)
         self.evento_generacion = Clock.schedule_once(lambda dt: self.generar_numero(), 2)
+        self.ids.cantidadejer.incrementar()
 
     def tiempo_agotado(self):
         self.ids.resultado.text = "Tiempo agotado :o"
         self.ids.resultado.text_color = [1, 0.5, 0, 1]
+        self.ids.cantidadejer.incrementar()
         
         # Desactivar botones
         for container in self.ids.opciones_respuesta.children:
@@ -478,6 +515,8 @@ class Division(MDScreen):
 
     def on_enter(self):
         self.generar_numero()
+        self.ids.cantidadejer.reiniciar()
+        self.ids.ejercorrectos.reiniciar()
 
     def generar_numero(self):
         if self.generando:
@@ -555,6 +594,7 @@ class Division(MDScreen):
                             widget.md_bg_color = [0, 0.6, 0, 1]
                             self.ids.resultado.text = "¡Correcto! :)"
                             self.ids.resultado.text_color = [0, 0.6, 0, 1]
+                            self.ids.ejercorrectos.incrementar()
 
                         else:
                             card.md_bg_color = [1, 0, 0, 1]    # Rojo
@@ -564,10 +604,12 @@ class Division(MDScreen):
 
         Clock.unschedule(self.generar_numero)
         self.evento_generacion = Clock.schedule_once(lambda dt: self.generar_numero(), 2)
+        self.ids.cantidadejer.incrementar()
 
     def tiempo_agotado(self):
         self.ids.resultado.text = "Tiempo agotado :o"
         self.ids.resultado.text_color = [1, 0.5, 0, 1]
+        self.ids.cantidadejer.incrementar()
         
         # Desactivar botones
         for container in self.ids.opciones_respuesta.children:
@@ -609,6 +651,8 @@ class Ecuacionbasica(MDScreen):
     
     def on_enter(self):
         self.generar_ejercicio()
+        self.ids.cantidadejer.reiniciar()
+        self.ids.ejercorrectos.reiniciar()
 
     def generar_ejercicio(self):
         if self.generando:
@@ -690,6 +734,8 @@ class Ecuacionbasica(MDScreen):
                             widget.md_bg_color = [0, 0.6, 0, 1]
                             self.ids.resultado_label.text = "¡Correcto!"
                             self.ids.resultado_label.text_color = [0, 0.6, 0, 1]
+                            self.ids.ejercorrectos.incrementar()
+                            
                         else:
                             card.md_bg_color = [1, 0, 0, 1]
                             widget.md_bg_color = [1, 0, 0, 1]
@@ -699,10 +745,12 @@ class Ecuacionbasica(MDScreen):
         #Generacion de nuevos ejercicios
         Clock.unschedule(self.generar_ejercicio)
         self.evento_generacion = Clock.schedule_once(lambda dt: self.generar_ejercicio(), 2)
+        self.ids.cantidadejer.incrementar()
 
     def tiempo_agotado(self):
         self.ids.resultado_label.text = "Tiempo agotado :o"
         self.ids.resultado_label.text_color = [1, 0.5, 0, 1]
+        self.ids.cantidadejer.incrementar()
         
         # Desactivar botones
         for container in self.ids.opciones_respuesta.children:
@@ -740,6 +788,8 @@ class Desafio(MDScreen):
 
     def on_enter(self):
         self.generar_numero()
+        self.ids.cantidadejer.reiniciar()
+        self.ids.ejercorrectos.reiniciar()
 
     def generar_numero(self):
         if self.generando:
@@ -844,6 +894,7 @@ class Desafio(MDScreen):
                             widget.md_bg_color = [0, 0.6, 0, 1]
                             self.ids.resultado.text = "¡Correcto! :)"
                             self.ids.resultado.text_color = [0, 0.6, 0, 1]
+                            self.ids.ejercorrectos.incrementar()
 
                         else:
                             card.md_bg_color = [1, 0, 0, 1]    # Rojo
@@ -853,10 +904,12 @@ class Desafio(MDScreen):
                             
         Clock.unschedule(self.generar_numero)
         self.evento_generacion = Clock.schedule_once(lambda dt: self.generar_numero(), 3)
+        self.ids.cantidadejer.incrementar()
 
     def tiempo_agotado(self):
         self.ids.resultado.text = "Tiempo agotado :o"
         self.ids.resultado.text_color = [1, 0.5, 0, 1]
+        self.ids.cantidadejer.incrementar()
         
         # Desactivar botones
         for container in self.ids.opciones_respuesta.children:
