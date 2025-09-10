@@ -490,7 +490,7 @@ GestorPantalla:
 
             #texto dentro del header
             MDLabel:
-                text: "Sigma - Ecuación Básicas"
+                text: "Sigma - Ecuacion Basica"
                 font_style: "H6"
                 theme_text_color: "Custom"
                 text_color: app.colors["text"]
@@ -517,50 +517,42 @@ GestorPantalla:
 
         #Center-------------------------------------------------------------------------------
         #Contenedor con los numeros a despejar----
-        FloatLayout:
-            MDLabel:
-                id: resultado_label
-                pos_hint: {"center_x": 0.5, "top": 0.9}
+        MDLabel:
+            id: resultado_label
+            pos_hint: {"center_x": 0.5, "top": 0.9}
 
-            CantidadEjer:
-                id: cantidadejer
-                text: "Ejercicio: 0"
-                pos_hint: {"x": 0.02, "top": 0.95}
-                size_hint: None, None
-                size: self.texture_size
+        CantidadEjer:
+            id: cantidadejer
+            text: ""
+            pos_hint: {"x": 0.02, "top": 0.95}
+            size_hint: None, None
+            size: self.texture_size
             
-            Ejercorrectos:
-                id: ejercorrectos
-                text: "Correctos: 0"
-                pos_hint: {"x": 0.02, "top": 0.55}
-                size_hint: None, None
-                size: self.texture_size
+        Ejercorrectos:
+            id: ejercorrectos
+            text: ""
+            pos_hint: {"x": 0.02, "top": 0.55}
+            size_hint: None, None
+            size: self.texture_size
         
         MDCard:
             id: contenedor_numeros
             radius: [20]
             size_hint: None, None
-            size: dp(300), dp(80)
+            size: dp(200), dp(50)        
             elevation: 6
             md_bg_color: app.colors["primary_dark"]
             padding: dp(10)
             orientation: "horizontal"
-            pos_hint: {"center_x": 0.5}
+            pos_hint: {"center_x": 0.5, "top": 0.50}
 
-            MDBoxLayout:
-                orientation: "horizontal"
-                spacing: dp(5)
-                size_hint_y: None
-                height: dp(50)
-                pos_hint: {"center_x": 0.5}
-
-                MDLabel:
-                    id: ecuacion_label
-                    text: ""
-                    font_size: "25sp"
-                    halign: "center"
-                    theme_text_color: "Custom"
-                    text_color: app.colors["text"]
+            MDLabel:
+                id: ecuacion_label
+                text: ""
+                font_size: "25sp"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: app.colors["text"]
 
         #contenedores con opciones------
         MDLabel:
@@ -580,8 +572,14 @@ GestorPantalla:
             size_hint_y: None
             height: self.minimum_height
             pos_hint: {"center_x": 0.5}
-
-    #Bellow----------------------------------------------------------------
+        
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(10)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+        
         AnchorLayout:
             anchor_x: "right"
             anchor_y: "bottom"
@@ -600,23 +598,7 @@ GestorPantalla:
                     md_bg_color: (0, 0, 0, 0)  # Fondo transparente
                     text_color: app.colors["text"]
 
-        MDCard:
-            size_hint_y: None
-            height: dp(60)
-            radius: [0, 0, 20, 20]  # Curvas arriba, recto abajo
-            md_bg_color: app.colors["card"]
-            elevation: 1
-            padding: dp(10)
-            orientation: "horizontal"
-
-            #texto dentro del header
-            MDLabel:
-                text: "Seleccione la operacion que desee practicar"
-                font_style: "H6"
-                theme_text_color: "Custom"
-                text_color: app.colors["text"]
-                halign: "center"
-                valign: "middle"
+    #Bellow----------------------------------------------------------------
 
 <Ecuacionsegundo>:
     name: "ecuacionsegundo"
@@ -1280,14 +1262,14 @@ GestorPantalla:
 
             CantidadEjer:
                 id: cantidadejer
-                text: "Ejercicio: 0"
+                text: ""
                 pos_hint: {"x": 0.02, "top": 0.95}
                 size_hint: None, None
                 size: self.texture_size
             
             Ejercorrectos:
                 id: ejercorrectos
-                text: "Correctos: 0"
+                text: ""
                 pos_hint: {"x": 0.02, "top": 0.55}
                 size_hint: None, None
                 size: self.texture_size
