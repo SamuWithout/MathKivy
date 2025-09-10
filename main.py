@@ -44,7 +44,7 @@ class Divisiondificultad(MDScreen): pass
 class Ecuaciones(MDScreen): pass
 
 class Desafiodificultad(MDScreen): pass
-
+ 
 class CantidadEjer(Label):
     valor = NumericProperty(0)
     
@@ -200,6 +200,12 @@ class Suma(MDScreen):
 
     def verificar_opcion(self, seleccion, *args):
         self.timer.stop()
+        # Desactivar botones
+        for container in self.ids.opciones_respuesta.children:
+            for widget in container.children:
+                if isinstance(widget, MDRaisedButton):
+                    widget.disabled = True
+                    
         correcta = self.n1 + self.n2
 
         for card in self.ids.opciones_respuesta.children:
@@ -330,6 +336,12 @@ class Resta(MDScreen):
 
     def verificar_opcion(self, seleccion, *args):
         self.timer.stop()
+        # Desactivar botones
+        for container in self.ids.opciones_respuesta.children:
+            for widget in container.children:
+                if isinstance(widget, MDRaisedButton):
+                    widget.disabled = True
+                    
         correcta = self.n1 - self.n2
 
         for card in self.ids.opciones_respuesta.children:
@@ -453,6 +465,12 @@ class Multiplicacion(MDScreen):
 
     def verificar_opcion(self, seleccion, *args):
         self.timer.stop()
+        # Desactivar botones
+        for container in self.ids.opciones_respuesta.children:
+            for widget in container.children:
+                if isinstance(widget, MDRaisedButton):
+                    widget.disabled = True
+                    
         correcta = self.n1 * self.n2
 
         for card in self.ids.opciones_respuesta.children:
@@ -583,6 +601,12 @@ class Division(MDScreen):
 
     def verificar_opcion(self, seleccion, *args):
         self.timer.stop()
+        # Desactivar botones
+        for container in self.ids.opciones_respuesta.children:
+            for widget in container.children:
+                if isinstance(widget, MDRaisedButton):
+                    widget.disabled = True
+                    
         correcta = self.dividendo / self.divisor
 
         for card in self.ids.opciones_respuesta.children:
@@ -723,6 +747,12 @@ class Ecuacionbasica(MDScreen):
 
     def verificar_opcion(self, seleccion, *args):
         self.timer.stop()
+        # Desactivar botones
+        for container in self.ids.opciones_respuesta.children:
+            for widget in container.children:
+                if isinstance(widget, MDRaisedButton):
+                    widget.disabled = True
+                    
         correcta = self.x_real
 
         for card in self.ids.opciones_respuesta.children:
@@ -883,6 +913,12 @@ class Desafio(MDScreen):
         
     def verificar_opcion(self, seleccion, *args):
         self.timer.stop()
+        # Desactivar botones
+        for container in self.ids.opciones_respuesta.children:
+            for widget in container.children:
+                if isinstance(widget, MDRaisedButton):
+                    widget.disabled = True
+                    
         correcta = self.resultado_correcto
 
         for card in self.ids.opciones_respuesta.children:
